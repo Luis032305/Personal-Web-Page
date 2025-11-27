@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luis Adrian C. Madlangbayan — Portfolio</title>
+  <style>
+    :root{
+      --py-blue: #306998;
+      --py-yellow: #ffd43b;
+      --muted:#6b6b6b;
+      --bg:#fff;
+      --max-width:1100px;
+      --header-height:84px;
+      --card-radius:12px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:var(--py-blue);
+      background: linear-gradient(180deg, #fff6d6 0%, #fff1b0 100%);
+      padding-top:var(--header-height);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    header{
+      position:fixed; /* pang fix */
+      top:0;
+      left:0;
+      right:0;
+      background:var(--py-blue);
+      color:#fff;
+      z-index:9999;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    }
+    .nav-wrap{ max-width:var(--max-width); margin:0 auto; display:flex; align-items:center;
+               justify-content:space-between; gap:18px; padding:14px 20px; }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand img{ width:44px; height:44px; border-radius:8px; object-fit:cover; border:2px solid var(--py-yellow); background:#fff;}
+    .brand h1{ font-size:18px; color:#fff; }
+
+    nav{ display:flex; gap:8px; align-items:center; }
+
+    .nav-btn{
+      padding:8px 14px;
+      border-radius:999px;
+      border:2px solid var(--py-yellow);
+      background:var(--py-yellow);
+      font-weight:700;
+      text-decoration:none;
+      color:var(--py-blue);
+      cursor:pointer;
+      outline:none;
+      box-shadow:none;
+      transform:none;
+      transition:none; 
+    }
+
+    .nav-btn:hover,
+    .nav-btn:focus,
+    .nav-btn:active{
+      background:var(--py-yellow);
+      color:var(--py-blue);
+      border-color:var(--py-yellow);
+      box-shadow:none;
+      transform:none;
+    }
+
+    .profile{ max-width:var(--max-width); margin:28px auto; display:grid; grid-template-columns:1fr 350px;
+           gap:24px; align-items:center; padding:20px 20px 20px; }
+    .profile-left{ background:var(--py-blue); color:var(--py-yellow); padding:44px; border-radius:var(--card-radius);
+                box-shadow:0 12px 30px rgba(0,0,0,0.06); }
+    .eyebrow{ color:var(--py-yellow); font-weight:800; margin-bottom:12px; font-size:13px; letter-spacing:1px; }
+    .profile-left h2{ color:#fff; font-size:36px; line-height:1.04; margin-bottom:10px; }
+    .profile-left p.lead{ color:rgba(255,255,255,0.95); margin-bottom:14px; max-width:52ch; }
+
+    .profile-photo{ width:100%; max-width:360px; border-radius:10px; overflow:hidden; border:6px solid #fff;
+                 box-shadow:0 10px 30px rgba(0,0,0,0.12); }
+    .profile-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    main{ max-width:var(--max-width); margin:12px auto 80px; padding:0 20px; }
+
+    section{ background:var(--bg); padding:22px; margin-bottom:18px; border-radius:10px;
+             border:1px solid rgba(0,0,0,0.04); scroll-margin-top: calc(var(--header-height) + 12px); }
+    section h3{ color:var(--py-blue); margin-bottom:8px; font-size:18px; }
+    hr.sep{ border:none; border-top:2px solid rgba(48,105,152,0.08); margin:10px 0 16px; }
+
+    .projects-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .project{
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border-radius:12px; padding:12px; box-shadow:0 10px 22px rgba(0,0,0,0.04); min-height:260px;
+      display:flex; flex-direction:column; justify-content:flex-start; gap:12px;
+    }
+    .project .proj-media{ width:100%; height:140px; border-radius:10px; overflow:hidden; border:4px solid rgba(48,105,152,0.06); background:#f6fbff; }
+    .project .proj-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .project strong{ display:block; font-size:16px; margin-bottom:6px; color:var(--py-blue); }
+    .project .muted{ color:var(--muted); font-size:13px; margin-bottom:10px; }
+    .skills-badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
+
+    .badge{ background:#eaf3ff; border:1px solid rgba(48,105,152,0.06); padding:8px 12px; border-radius:999px;
+            font-weight:700; font-size:13px; color:var(--py-blue); box-shadow:inset 0 -2px 0 rgba(0,0,0,0.02); }
+
+    .certs-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+    .cert-card{
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border-radius:12px; padding:12px; box-shadow:0 10px 22px rgba(0,0,0,0.04); min-height:220px;
+      display:flex; flex-direction:column; gap:12px; justify-content:flex-start;
+    }
+    .cert-media{ width:100%; height:140px; border-radius:10px; overflow:hidden; border:4px solid rgba(48,105,152,0.06); background:#f6fbff; }
+    .cert-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .cert-card strong{ color:var(--py-blue); display:block; font-size:15px; }
+    .cert-card .muted{ color:var(--muted); font-size:13px; }
+
+    .edu-list,
+    .hard-list,
+    .soft-list {
+      margin: 0;
+      padding-left: 20px;      
+      color: var(--muted);
+      line-height: 1.6;
+      list-style-position: outside;
+
+      list-style-type: disc;
+    }
+
+    .edu-list li{ margin-bottom:10px; }
+    .edu-list li strong{ display:inline; margin-right:6px; color:var(--py-blue); }
+
+    .hard-list li,
+    .soft-list li { margin-bottom:10px; }
+
+    @media (min-width:980px){
+      .hard-skills-columns{
+        display:flex;
+        gap:30px;
+        align-items:flex-start;
+      }
+      .hard-skills-columns ul{ margin:0; padding-left:20px; }
+    }
+
+    footer{ margin-top:30px; }
+    .social-bar{
+      background:linear-gradient(90deg,var(--py-blue), #1f5f9b);
+      color:var(--py-yellow);
+      padding:18px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      position:relative;
+      overflow:hidden;
+      border-top:6px solid rgba(0,0,0,0.03);
+      border-bottom:6px solid rgba(0,0,0,0.03);
+    }
+    .social-bar .inner{ max-width:var(--max-width); width:100%; display:flex; align-items:center; justify-content:center; gap:18px; }
+    .social-bar .label{ color:var(--py-yellow); font-weight:700; margin-right:12px; }
+    .social-icons{ display:flex; gap:12px; }
+    .ico{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,0.18);
+      transition:background .12s ease; 
+      border:1px solid rgba(255,255,255,0.32);
+    }
+    .ico svg{ width:16px; height:16px; fill:#ffffff; opacity:1; }
+    .ico:hover{ background:rgba(255,255,255,0.28); transform:none; }
+
+    .footer-bottom{
+      background:var(--py-blue);
+      color:var(--py-yellow);
+      padding:12px 14px;
+      text-align:center;
+      font-size:14px;
+      margin-top:0;
+    }
+
+    @media (max-width:880px){
+      .profile{ grid-template-columns:1fr; padding:12px }
+      .profile-left{ padding:22px }
+      .profile-left h2{ font-size:26px }
+      .nav-wrap{ padding:10px }
+      nav{ overflow:auto; white-space:nowrap; padding-bottom:6px }
+      .projects-grid{ grid-template-columns:repeat(1,1fr); }
+      .certs-grid{ grid-template-columns:repeat(1,1fr); }
+    }
+
+    .profile{ align-items:center; }
+    .profile-left{ margin-left:auto; margin-right:auto; }
+    .profile-photo{ margin-left:auto; margin-right:auto; }
+  </style>
+</head>
+<body>
+
+  <header id="site-header">
+    <div class="nav-wrap">
+      <div class="brand">
+
+        <img src="imgfolder/logoportfolio.png" alt="logo/photo">
+        <h1>Luis Adrian C. Madlangbayan</h1>
+      </div>
+
+      <nav id="navPills">
+
+        <a class="nav-btn" href="index.html">HOME</a>
+        <a class="nav-btn" href="Resume.html">RESUME</a>
+        <a class="nav-btn" href="CharacterArt.html">ARTWORK</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <section class="profile" aria-label="Profile">
+    <div class="profile-left">
+      <div class="eyebrow">MY NAME IS LUIS ADRIAN</div>
+      <h2>I Am An Aspiring Software Engineer</h2>
+      <p class="lead">An Information Technology 3rd Year student specializing in software development, systems management, and data analysis. I build projects across Java, Python, C, and C#.</p>
+    </div>
+
+    <div class="profile-right">
+      <div class="profile-photo" title="Profile / reference photo">
+        <img src="imgfolder/luispictureforportfolio.png" alt="hero photo">
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <section id="about" tabindex="-1">
+      <h3>About</h3>
+      <hr class="sep">
+      <p class="muted">Hello! I'm Luis Adrian C. Madlangbayan. I'm studying BS Information Technology and I enjoy building systems for academics and small businesses while learning new languages and tools.</p>
+
+      <div style="margin-top:14px; display:flex; gap:18px; flex-wrap:wrap;">
+        <div style="min-width:240px; background:#fff; border-radius:8px; padding:12px; border:1px solid rgba(0,0,0,0.04);">
+          <strong>Contact</strong>
+          <p style="margin:8px 0; color:var(--muted);">
+            Phone: <a href="tel:+639204359960" style="color:var(--py-blue); text-decoration:none;">(+63) 920-435-9960</a><br>
+            Email: <a href="mailto:luismadlangbayan23@gmail.com" style="color:var(--py-blue); text-decoration:none;">luismadlangbayan23@gmail.com</a><br>
+            Address: <span style="color:var(--muted);">420 Capt. J. Luna St. Ligtong 1, Rosario, Cavite</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" tabindex="-1">
+      <h3>Experience</h3>
+      <hr class="sep">
+      <p class="muted">No formal work experience (entry-level). Below are school projects and practical systems created by my group and I.</p>
+    </section>
+
+    <section id="projects" tabindex="-1">
+      <h3>Projects</h3>
+      <hr class="sep">
+      <div class="projects-grid">
+
+        <div class="project" aria-label="Panzer Store System">
+          <div class="proj-media"><img src="imgfolder2/PanzerStoreSystem.png" alt="Panzer Store System image"></div>
+          <div>
+            <strong>Panzer Store System</strong>
+            <div class="muted">C# • Tank Inventory & Sales System</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">C#</span>
+            <span class="badge">SSMS</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Comicborne">
+          <div class="proj-media"><img src="imgfolder2/Comicborne.png" alt="Comicborne image"></div>
+          <div>
+            <strong>Comicborne</strong>
+            <div class="muted">Java • Comics Management System</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">Java</span>
+            <span class="badge">SSMS</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Platform Technologies Project">
+          <div class="proj-media"><img src="imgfolder2/PlatformTechnologies.png" alt="Platform Technologies Project image"></div>
+          <div>
+            <strong>Platform Technologies Project</strong>
+            <div class="muted">C • Different Sorting Algorithms System</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">C</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Toy Military Aircraft Store System">
+          <div class="proj-media"><img src="imgfolder2/ToyMilitaryAircraftStoreSystem.png" alt="Toy Military Aircraft Store System image"></div>
+          <div>
+            <strong>Toy Military Aircraft Store System</strong>
+            <div class="muted">C# • Toy Aircraft Inventory & Sales Management System</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">C#</span>
+            <span class="badge">MySQL</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Portfolio Website">
+          <div class="proj-media"><img src="imgfolder2/portfoliowebsite.png" alt="Portfolio Website image"></div>
+          <div>
+            <strong>Portfolio Website</strong>
+            <div class="muted">HTML • CSS</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Sebastinong Grade Program">
+          <div class="proj-media"><img src="imgfolder2/SebastinongGradeProgram.png" alt="Sebastinong Grade Program image"></div>
+          <div>
+            <strong>Sebastinong Grade Program</strong>
+            <div class="muted">Java • Grades Management System (College)</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">Java</span>
+            <span class="badge">MySQL</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Academic Grades Project">
+          <div class="proj-media"><img src="imgfolder2/G12AcademicsProject.png" alt="Academic Grades Project image"></div>
+          <div>
+            <strong>Academic Grades Project</strong>
+            <div class="muted">Java • Grades Management System (Grade 12)</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">Java</span>
+          </div>
+        </div>
+
+        <div class="project" aria-label="Ashen Cipher">
+          <div class="proj-media"><img src="imgfolder2/ashencipher.png" alt="Discrete Structures Project image"></div>
+          <div>
+            <strong>Information Security and Assurance 1 Project</strong>
+            <div class="muted">Python (w/ Tkinter & SSMS) • Custom Made Cipher with Encryption & Decryption System</div>
+          </div>
+          <div class="skills-badges">
+            <span class="badge">Python</span>
+            <span class="badge">SSMS</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="education" tabindex="-1">
+      <h3>Education</h3>
+      <hr class="sep">
+      <ul class="edu-list">
+        <li><strong>Mayor Calixto D. Enriquez Elementary School</strong> — 2010–2016</li>
+        <li><strong>Rosario Institute</strong> — TVL-ICT, 2016–2022 — With Honor</li>
+        <li><strong>San Sebastian College Recoletos de Cavite</strong> — BS Information Technology, 2022–ONGOING</li>
+      </ul>
+    </section>
+
+    <section id="hard-skills" tabindex="-1">
+      <h3>HARD SKILLS</h3>
+      <hr class="sep">
+      <div class="hard-skills-columns">
+        <ul class="hard-list" aria-label="Programming languages and core skills">
+          <li>HTML, CSS, JavaScript</li>
+          <li>Python, Java, C, C#, C++</li>
+        </ul>
+
+        <ul class="hard-list" aria-label="Tools and databases">
+          <li>SSMS, MySQL</li>
+          <li>Data Analysis & MS Office (Excel, Word, PPT)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="soft-skills" tabindex="-1">
+      <h3>SOFT SKILLS</h3>
+      <hr class="sep">
+      <ul class="soft-list">
+        <li>Leadership & team coordination</li>
+        <li>Project planning and delivery</li>
+        <li>Public speaking and presentations</li>
+        <li>Decision making under pressure</li>
+      </ul>
+    </section>
+
+    <section id="certifications" tabindex="-1">
+      <h3>CERTIFICATIONS</h3>
+      <hr class="sep">
+      <div class="certs-grid">
+
+        <!-- saylor   -->
+        <div class="cert-card" aria-label="PRDV410 Intro to Java & OOP">
+          <div class="cert-media"><img src="imgfolder3/prdv410.png" alt="PRDV410 certificate"></div>
+          <div>
+            <strong>PRDV410: Intro to Java & OOP</strong>
+            <div class="muted">Saylor — September 2023</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS101 Programming 1">
+          <div class="cert-media"><img src="imgfolder3/cs101.png" alt="CS101 certificate"></div>
+          <div>
+            <strong>CS101: Programming 1</strong>
+            <div class="muted">Saylor — April 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS102 Programming 2">
+          <div class="cert-media"><img src="imgfolder3/cs102.png" alt="CS102 certificate"></div>
+          <div>
+            <strong>CS102: Programming 2</strong>
+            <div class="muted">Saylor — April 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS105 Programming 1">
+          <div class="cert-media"><img src="imgfolder3/cs105.png" alt="CS105 certificate"></div>
+          <div>
+            <strong>CS105: Programming 1</strong>
+            <div class="muted">Saylor — November 2023</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS201 Data Structures">
+          <div class="cert-media"><img src="imgfolder3/cs201.png" alt="CS201 certificate"></div>
+          <div>
+            <strong>CS201: Data Structures</strong>
+            <div class="muted">Saylor — September 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS202 Discrete Structures">
+          <div class="cert-media"><img src="imgfolder3/cs202.png" alt="CS202 certificate"></div>
+          <div>
+            <strong>CS202: Discrete Structures</strong>
+            <div class="muted">Saylor — October 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS302 Software Engineering">
+          <div class="cert-media"><img src="imgfolder3/cs302.png" alt="CS302 certificate"></div>
+          <div>
+            <strong>CS302: Software Engineering</strong>
+            <div class="muted">Saylor — September 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS401 Operating Systems">
+          <div class="cert-media"><img src="imgfolder3/cs401.png" alt="CS401 certificate"></div>
+          <div>
+            <strong>CS401: Operating Systems</strong>
+            <div class="muted">Saylor — November 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="PHIL102 Critical Thinking">
+          <div class="cert-media"><img src="imgfolder3/phil102.png" alt="PHIL102 certificate"></div>
+          <div>
+            <strong>PHIL102: Critical Thinking</strong>
+            <div class="muted">Saylor — September 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="PRDV104 Professional Etiquette">
+          <div class="cert-media"><img src="imgfolder3/prdv104.png" alt="PRDV104 certificate"></div>
+          <div>
+            <strong>PRDV104: Professional Etiquette</strong>
+            <div class="muted">Saylor — August 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="BUS200 Business Ethics">
+          <div class="cert-media"><img src="imgfolder3/bus200.png" alt="BUS200 certificate"></div>
+          <div>
+            <strong>BUS200: Business Ethics</strong>
+            <div class="muted">Saylor — September 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="PRDV223 Org Culture & Ethics">
+          <div class="cert-media"><img src="imgfolder3/prdv223.png" alt="PRDV223 certificate"></div>
+          <div>
+            <strong>PRDV223: Org Culture & Ethics</strong>
+            <div class="muted">Saylor — September 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="CS406 Info Security">
+          <div class="cert-media"><img src="imgfolder3/cs406.png" alt="CS406 certificate"></div>
+          <div>
+            <strong>CS406: Info Security</strong>
+            <div class="muted">Saylor — November 2025</div>
+          </div>
+        </div>
+
+<!-- cisco   -->
+        <div class="cert-card" aria-label="Cisco -  Python Essentials 1">
+          <div class="cert-media"><img src="imgfolder3/pythonessentials1.png" alt="MA121 certificate"></div>
+          <div>
+            <strong>MA121: Statistics</strong>
+            <div class="muted">Cisco — April 2025</div>
+          </div>
+        </div>
+
+        
+        <div class="cert-card" aria-label="Cisco - Operating Systems">
+          <div class="cert-media"><img src="imgfolder3/OperatingSystem.png" alt="Cisco Operating Systems certificate"></div>
+          <div>
+            <strong>Operating Systems</strong>
+            <div class="muted">Cisco — November 2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" aria-label="Cisco - CCNA Intro to Networking">
+          <div class="cert-media"><img src="imgfolder3/CCNA.png" alt="Cisco CCNA certificate"></div>
+          <div>
+            <strong>CCNA: Intro to Networking</strong>
+            <div class="muted">Cisco — January 2025</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="social-bar" role="contentinfo" aria-label="social">
+      <div class="inner">
+        <div class="label">Find me on social media</div>
+        <div class="social-icons" role="list">
+          <a class="ico" href="https://www.facebook.com/Ruisu23.Luis/" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.1C22 6.6 17.5 2 12 2S2 6.6 2 12.1C2 17 5.7 21.2 10.4 22v-7.1H8.1v-2.8h2.3V10c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .07 2 .07v2.2h-1.1c.1-1.1 0-1.4.67-1.4 1.4v1.6h2.5l-.4 2.8h-2.1V22C18.3 21.2 22 17 22 12.1z"/></svg>
+          </a>
+
+          <a class="ico" href="https://www.instagram.com/luuii1ss/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zm6.8-3.6a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2z"/></svg>
+          </a>
+
+          <a class="ico" href="https://www.linkedin.com/in/luis-adrian-madlangbayan-7ab5a42b2/" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.7-1.8 3.5-1.8 3.7 0 4.4 2.4 4.4 5.6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8-1.7 0-2 1.4-2 2.7V21H9z"/></svg>
+          </a>
+        </div>
+      </div>
+      <img src="/mnt/data/fd946d9f-fbb2-4eac-8aad-83ce74807be2.png" alt="" style="position:absolute;inset:0;opacity:0.06;object-fit:cover;pointer-events:none">
+    </div>
+
+    <div class="footer-bottom">© <strong>Luis Adrian C. Madlangbayan</strong> — Resume Page</div>
+  </footer>
+
+</body>
+</html>
